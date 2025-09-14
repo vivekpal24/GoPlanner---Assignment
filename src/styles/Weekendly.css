@@ -1,0 +1,78 @@
+/* ===== General Styling ===== */
+body {
+  @apply bg-gradient-to-br from-indigo-50 via-purple-50 to-white min-h-screen antialiased;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ===== Card Glass Effect ===== */
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 1rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+}
+
+/* ===== Section Headers with Gradient Bar ===== */
+.section-header {
+  border-top-left-radius: 0.75rem;
+  border-top-right-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  color: white;
+}
+
+.section-food {
+  @apply bg-gradient-to-r from-orange-400 to-red-500;
+}
+.section-outdoor {
+  @apply bg-gradient-to-r from-green-400 to-blue-500;
+}
+.section-creative {
+  @apply bg-gradient-to-r from-purple-500 to-indigo-500;
+}
+.section-social {
+  @apply bg-gradient-to-r from-teal-400 to-cyan-500;
+}
+
+/* ===== Buttons ===== */
+.btn-primary {
+  @apply px-4 py-2 rounded-lg font-medium shadow-md transition-all;
+}
+.btn-primary-green {
+  @apply bg-green-500 text-white hover:bg-green-600;
+}
+.btn-primary-indigo {
+  @apply bg-indigo-500 text-white hover:bg-indigo-600;
+}
+
+/* ===== Scrollbar Styling ===== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #6366f1, #9333ea);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ===== Activity List Items ===== */
+.activity-item {
+  @apply flex justify-between items-center px-4 py-2 rounded-md mb-2 bg-white shadow-sm;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.activity-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== Schedule Card ===== */
+.schedule-day {
+  @apply rounded-xl shadow-lg bg-white overflow-hidden;
+}
+.schedule-day-header {
+  @apply text-white font-semibold px-4 py-2;
+  background: linear-gradient(90deg, #6366f1, #9333ea);
+}
