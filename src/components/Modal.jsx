@@ -93,7 +93,7 @@ const ExportModal = ({
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div className="fixed inset-0 bg-opacity-50 flex items-center justify-center p-4 z-50">
       <div className="bg-white rounded-xl max-w-2xl w-full p-6 overflow-y-auto max-h-[90vh]">
         {/* Modal Header */}
         <div className="flex items-center justify-between mb-4">
@@ -158,19 +158,19 @@ const ExportModal = ({
         </div>
 
         {/* Action Buttons */}
-        <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
-          <button
+        <div className="mt-6 grid grid-cols-2 gap-3">
+          {/* <button
             onClick={() => window.print()}
             className="p-3 border-2 border-gray-500 text-gray-700 rounded-lg hover:bg-gray-100 flex items-center justify-center gap-2"
           >
             <Printer className="w-4 h-4" />
             Print
-          </button>
+          </button> */}
 
-          <button className="p-3 border-2 border-blue-500 text-blue-500 rounded-lg hover:bg-blue-50 flex items-center justify-center gap-2">
+          {/* <button className="p-3 border-2 border-blue-500 text-blue-500 rounded-lg hover:bg-blue-50 flex items-center justify-center gap-2">
             <Download className="w-4 h-4" />
             Download
-          </button>
+          </button> */}
 
           <button
             onClick={saveOrUpdatePlan}

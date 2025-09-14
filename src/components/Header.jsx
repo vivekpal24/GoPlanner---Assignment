@@ -1,18 +1,14 @@
-// frontend/src/components/Header.jsx
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
 
-const Header = () => {
-  return (
-    <header className="bg-blue-600 text-white p-4 shadow-md">
-      <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="text-2xl font-bold">Weekendly</Link>
-        <nav>
-          <Link to="/" className="mr-4 hover:text-gray-200">Home</Link>
-        </nav>
-      </div>
-    </header>
-  );
-};
+const PlannerHeader = () => (
+  <div className="text-center mb-8">
+    <h1 className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-2">
+      ✨ Weekend Planner
+    </h1>
+    <p className="text-black text-lg">
+      Design your perfect weekend with smart suggestions and beautiful planning
+    </p>
+  </div>
+);
 
-export default Header;
+export default PlannerHeader;

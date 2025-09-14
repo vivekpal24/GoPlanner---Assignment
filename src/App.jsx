@@ -2,9 +2,10 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import SchedulePage from "./pages/SchedulePage";
-import WeekendPlanner from "./pages/Home"; // <-- Import your new page
-import ViewPlan from "./components/ViewPlan"; // <-- Import the shared plan view page
+
+import WeekendPlanner from "./pages/Home"; 
+import ViewPlan from "./components/ViewPlan"; 
+import NotFound from "./pages/NotFound"; // <-- Create this page
 import "./index.css";
 
 function PrivateRoute({ children }) {
@@ -18,14 +19,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route
-          path="/schedule"
-          element={
-            <PrivateRoute>
-              <SchedulePage />
-            </PrivateRoute>
-          }
-        />
+      
         <Route
           path="/weekendly"
           element={
@@ -34,8 +28,10 @@ export default function App() {
             </PrivateRoute>
           }
         />
-        {/* ✅ Route for viewing shared weekend plans (no login required) */}
         <Route path="/view-plan" element={<ViewPlan />} />
+
+        {/* Catch-all route for 404 */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </AuthProvider>
   );

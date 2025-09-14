@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -26,7 +26,7 @@ export default function Login() {
         className="bg-white p-6 rounded-2xl shadow-md w-full max-w-sm"
       >
         <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
-        {error && <p className="text-red-500 text-sm">{error}</p>}
+        {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
         <input
           type="email"
           placeholder="Email"
@@ -47,6 +47,17 @@ export default function Login() {
         >
           Login
         </button>
+
+        {/* Register link */}
+        <p className="text-center mt-4 text-sm text-gray-600">
+          Don't have an account?{" "}
+          <Link
+            to="/signup"
+            className="text-blue-500 hover:underline font-semibold"
+          >
+            Register
+          </Link>
+        </p>
       </form>
     </div>
   );
