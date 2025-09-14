@@ -109,7 +109,7 @@ const WeekendPlanner = () => {
 
   const addDiscoveredActivity = (item, dayIndex) => {
     const newActivity = {
-      id: `disc_${item.id}_${Date.now()}`, name: item.name, duration:120, icon: MapPin, category:'outdoor',
+      id: `disc_${item.id}_${Date.now()}`, name: item.name, duration:120, icon: "MapPin", category:'outdoor',
       vibe:'happy', color:'bg-green-100 text-green-800', location:item.location, rating:item.rating,
       distance:item.distance, description:item.description, isDiscovered:true
     };

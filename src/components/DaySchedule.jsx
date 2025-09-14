@@ -1,5 +1,36 @@
 import React from "react";
-import { Calendar, Clock, MapPin, X } from "lucide-react";
+import {
+  Calendar,
+  Clock,
+  MapPin,
+  Coffee,
+  Film,
+  Book,
+  Music,
+  Utensils,
+  Camera,
+  Gamepad2,
+  Palette,
+  Heart,
+  Zap,
+  Smile,
+  X,
+} from "lucide-react";
+
+const iconMap = {
+  MapPin,
+  Coffee,
+  Film,
+  Book,
+  Music,
+  Utensils,
+  Camera,
+  Gamepad2,
+  Palette,
+  Heart,
+  Zap,
+  Smile,
+};
 
 const DaySchedule = ({
   day,
@@ -11,7 +42,7 @@ const DaySchedule = ({
   removeActivity,
   moodConfig,
   headerGradient,
-  readOnly = false, // New prop
+  readOnly = false,
 }) => {
   return (
     <div
@@ -32,56 +63,74 @@ const DaySchedule = ({
         {scheduledActivities.length === 0 ? (
           <div className="text-center text-gray-400 mt-12">
             <Calendar className="w-12 h-12 mx-auto mb-3 opacity-50" />
-            <p>{readOnly ? "No activities scheduled." : `Drag activities here to plan your ${day}`}</p>
+            <p>
+              {readOnly
+                ? "No activities scheduled."
+                : `Drag activities here to plan your ${day}`}
+            </p>
           </div>
         ) : (
-          scheduledActivities.map((activity) => (
-            <div
-              key={activity.id}
-              draggable={readOnly ? false : true}
-              onDragStart={readOnly ? undefined : (e) => handleDragStart(e, activity)}
-              className={`p-3 rounded-lg border-2 border-gray-200 hover:shadow-md transition-all ${
-                readOnly ? "" : "cursor-move"
-              } ${moodConfig[activity.mood]?.bgColor || ""}`}
-            >
-              <div className="flex items-center justify-between">
-                <div className="flex-1">
-                  <div className="font-medium text-gray-900">{activity.name}</div>
-                  <div className="text-sm text-gray-600 flex items-center gap-4 mt-1">
-                    {activity.timeSlot && (
-                      <span className="flex items-center gap-1">
-                        <Clock className="w-3 h-3" />
-                        {activity.timeSlot} ({activity.duration})
-                      </span>
-                    )}
-                    {activity.location && (
-                      <span className="flex items-center gap-1">
-                        <MapPin className="w-3 h-3" />
-                        {activity.location}
-                      </span>
-                    )}
+          scheduledActivities.map((activity) => {
+            const IconComponent =
+              activity.icon && iconMap[activity.icon]
+                ? iconMap[activity.icon]
+                : MapPin;
+
+            return (
+              <div
+                key={activity.id}
+                draggable={readOnly ? false : true}
+                onDragStart={
+                  readOnly ? undefined : (e) => handleDragStart(e, activity)
+                }
+                className={`p-3 rounded-lg border-2 border-gray-200 hover:shadow-md transition-all ${
+                  readOnly ? "" : "cursor-move"
+                } ${moodConfig[activity.mood]?.bgColor || ""}`}
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex-1">
+                    <div className="font-medium text-gray-900 flex items-center gap-2">
+                      {/* ✅ Render the dynamic icon here */}
+                      <IconComponent className="w-4 h-4 text-gray-700" />
+                      {activity.name}
+                    </div>
+
+                    <div className="text-sm text-gray-600 flex items-center gap-4 mt-1">
+                      {activity.timeSlot && (
+                        <span className="flex items-center gap-1">
+                          <Clock className="w-3 h-3" />
+                          {activity.timeSlot} ({activity.duration})
+                        </span>
+                      )}
+                      {activity.location && (
+                        <span className="flex items-center gap-1">
+                          <MapPin className="w-3 h-3" />
+                          {activity.location}
+                        </span>
+                      )}
+                    </div>
                   </div>
+                  {!readOnly && (
+                    <div className="flex items-center gap-2">
+                      <span
+                        className={`px-2 py-1 rounded-full text-xs ${
+                          moodConfig[activity.mood]?.color || ""
+                        }`}
+                      >
+                        {moodConfig[activity.mood]?.icon}
+                      </span>
+                      <button
+                        onClick={() => removeActivity(activity.id)}
+                        className="p-1 text-red-500 hover:bg-red-50 rounded-full"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    </div>
+                  )}
                 </div>
-                {!readOnly && (
-                  <div className="flex items-center gap-2">
-                    <span
-                      className={`px-2 py-1 rounded-full text-xs ${
-                        moodConfig[activity.mood]?.color || ""
-                      }`}
-                    >
-                      {moodConfig[activity.mood]?.icon}
-                    </span>
-                    <button
-                      onClick={() => removeActivity(activity.id)}
-                      className="p-1 text-red-500 hover:bg-red-50 rounded-full"
-                    >
-                      <X className="w-4 h-4" />
-                    </button>
-                  </div>
-                )}
               </div>
-            </div>
-          ))
+            );
+          })
         )}
       </div>
     </div>
